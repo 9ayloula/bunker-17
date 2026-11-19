@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d4k5jv7b8g551"]
+
+[ext_resource type="PackedScene" uid="uid://cabcg2nvtajnb" path="res://Scenes/Objects/wooden door.fbx" id="1_s0qrg"]
+[ext_resource type="Texture2D" uid="uid://bodhh75f7xtw3" path="res://Scenes/Objects/wetransfer_door-wooden_door_mat_basecolor-png_2026-11-18_1728/door wooden_Door_mat_BaseColor.png" id="2_s0qrg"]
+[ext_resource type="Texture2D" uid="uid://owixcudlnbum" path="res://Scenes/Objects/wetransfer_door-wooden_door_mat_basecolor-png_2026-11-18_1728/door wooden_Door_mat_Height.png" id="2_t3whu"]
+[ext_resource type="Texture2D" uid="uid://c06w1ojgwr5dh" path="res://Scenes/Objects/wetransfer_door-wooden_door_mat_basecolor-png_2026-11-18_1728/door wooden_Door_mat_Normal.png" id="4_utvg4"]
+[ext_resource type="Texture2D" uid="uid://dgkff0b4mgmgn" path="res://Scenes/Objects/wetransfer_door-wooden_door_mat_basecolor-png_2026-11-18_1728/door wooden_Door_mat_Roughness.png" id="5_al4cp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2nel"]
+albedo_texture = ExtResource("2_s0qrg")
+albedo_texture_force_srgb = true
+roughness_texture = ExtResource("5_al4cp")
+normal_enabled = true
+normal_texture = ExtResource("4_utvg4")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("2_t3whu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wp5gl"]
+size = Vector3(0.050354004, 1.5477905, 0.8175049)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1676278795]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.7873, 1.1920929e-07, -0.16073656)
+
+[node name="wooden door (1)" parent="." unique_id=426202602 instance=ExtResource("1_s0qrg")]
+
+[node name="wooden_door" parent="wooden door (1)" index="0" unique_id=2146666760]
+surface_material_override/0 = SubResource("StandardMaterial3D_j2nel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=611077014]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0.00033874623, 0.015535279, -0.008121278)
+shape = SubResource("BoxShape3D_wp5gl")
+
+[editable path="wooden door (1)"]

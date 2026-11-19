@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dhjx2cut3g2ci"]
+
+[ext_resource type="PackedScene" uid="uid://bfmsd3wajv0ou" path="res://Scenes/Player.tscn" id="1_k3r0p"]
+[ext_resource type="Script" uid="uid://dgbo7ay6ff1xr" path="res://Scripts/object.gd" id="2_1fle2"]
+[ext_resource type="PackedScene" uid="uid://cnjpc6phe6fjq" path="res://Scenes/Objects/LightSwitch.tscn" id="3_1fle2"]
+[ext_resource type="Script" uid="uid://di6rxsc5fl2c4" path="res://Scripts/light_receiver.gd" id="5_5qku0"]
+[ext_resource type="Script" uid="uid://c8y3id65syco3" path="res://Scripts/door.gd" id="6_88la7"]
+[ext_resource type="PackedScene" uid="uid://d4k5jv7b8g551" path="res://Scenes/Objects/wooden_door.tscn" id="6_b1omx"]
+[ext_resource type="PackedScene" uid="uid://wqpgi3dhiwyx" path="res://Scenes/Objects/Keycard.tscn" id="7_88la7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u0qx7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u0qx7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wp5gl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_04epq"]
+
+[node name="Bunker_17" type="Node3D" unique_id=946112014]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1699378752]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1930790051]
+shape = SubResource("BoxShape3D_u0qx7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1716264222]
+mesh = SubResource("BoxMesh_u0qx7")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=386831511 groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3359017, -3.0202012)
+script = ExtResource("2_1fle2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1776237154]
+shape = SubResource("BoxShape3D_wp5gl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=827857487]
+mesh = SubResource("BoxMesh_04epq")
+
+[node name="LightSwitch" parent="." unique_id=460108427 instance=ExtResource("3_1fle2")]
+transform = Transform3D(0.15, 0, 0, 0, 0.25, 0, 0, 0, 0.05, 0.28918558, 1.0962372, 0)
+
+[node name="Player" parent="." unique_id=1605698577 instance=ExtResource("1_k3r0p")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=718932764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7395613, 1.5424545, 0)
+script = ExtResource("5_5qku0")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=300949156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19715, 1.6287422, 0)
+script = ExtResource("5_5qku0")
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="." unique_id=1076708485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24082363, 1.8896854, 0)
+script = ExtResource("5_5qku0")
+
+[node name="Door" parent="." unique_id=1676278795 groups=["interactable"] instance=ExtResource("6_b1omx")]
+transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 60, -1.7850317, -0.42468202, 0.83941656)
+script = ExtResource("6_88la7")
+locked = true
+required_item = "keycard"
+
+[node name="StaticBody3D" parent="." unique_id=1784674151 groups=["interactable"] instance=ExtResource("7_88la7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9988256, 0, 2.180595)
+
+[connection signal="light_toggled" from="LightSwitch" to="OmniLight3D" method="_on_light_switch_light_toggled"]
+[connection signal="light_toggled" from="LightSwitch" to="OmniLight3D2" method="_on_light_switch_light_toggled"]
+[connection signal="light_toggled" from="LightSwitch" to="OmniLight3D3" method="_on_light_switch_light_toggled"]
+[connection signal="light_toggled" from="LightSwitch" to="Door" method="_on_light_switch_light_toggled"]
+[connection signal="picked_up" from="StaticBody3D" to="Player" method="_on_static_body_3d_picked_up"]

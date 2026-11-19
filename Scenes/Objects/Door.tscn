@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dt57agjcbib8"]
+
+[ext_resource type="Script" uid="uid://c8y3id65syco3" path="res://Scripts/door.gd" id="1_lgil6"]
+[ext_resource type="PackedScene" uid="uid://cabcg2nvtajnb" path="res://Scenes/Objects/wooden door.fbx" id="2_cegg8"]
+[ext_resource type="Texture2D" uid="uid://bodhh75f7xtw3" path="res://Scenes/Objects/wetransfer_door-wooden_door_mat_basecolor-png_2026-11-18_1728/door wooden_Door_mat_BaseColor.png" id="3_vs3wr"]
+[ext_resource type="Texture2D" uid="uid://owixcudlnbum" path="res://Scenes/Objects/wetransfer_door-wooden_door_mat_basecolor-png_2026-11-18_1728/door wooden_Door_mat_Height.png" id="4_nfa8j"]
+[ext_resource type="Texture2D" uid="uid://c06w1ojgwr5dh" path="res://Scenes/Objects/wetransfer_door-wooden_door_mat_basecolor-png_2026-11-18_1728/door wooden_Door_mat_Normal.png" id="5_g1jp6"]
+[ext_resource type="Texture2D" uid="uid://dgkff0b4mgmgn" path="res://Scenes/Objects/wetransfer_door-wooden_door_mat_basecolor-png_2026-11-18_1728/door wooden_Door_mat_Roughness.png" id="6_nuewt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ubgv"]
+albedo_texture = ExtResource("3_vs3wr")
+albedo_texture_force_srgb = true
+roughness_texture = ExtResource("6_nuewt")
+normal_enabled = true
+normal_texture = ExtResource("5_g1jp6")
+heightmap_enabled = true
+heightmap_scale = 0.0
+heightmap_texture = ExtResource("4_nfa8j")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5wdsy"]
+size = Vector3(1, 1.1869812, 0.6074829)
+
+[node name="Door" type="StaticBody3D" unique_id=1983789557]
+transform = Transform3D(1, 0, 0, 0, 20, 0, 0, 0, 20, -4.461, 0, 0)
+
+[node name="wooden door (1)" parent="." unique_id=426202602 instance=ExtResource("2_cegg8")]
+transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, -0.7873, 1.1920929e-07, -0.16073656)
+
+[node name="wooden_door" parent="wooden door (1)" index="0" unique_id=905976732]
+surface_material_override/0 = SubResource("StandardMaterial3D_7ubgv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1715695398]
+transform = Transform3D(1, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999995, 0, 0.6453414, -0.4618224)
+shape = SubResource("BoxShape3D_5wdsy")
+script = ExtResource("1_lgil6")
+
+[editable path="wooden door (1)"]

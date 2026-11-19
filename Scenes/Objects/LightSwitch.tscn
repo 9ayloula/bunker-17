@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cnjpc6phe6fjq"]
+
+[ext_resource type="Script" uid="uid://dhgh0fnwwwmfe" path="res://Scenes/Objects/light_switch.gd" id="1_tcqi7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wllx4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_kc8g7"]
+
+[node name="LightSwitch" type="StaticBody3D" unique_id=460108427 groups=["interactable"]]
+transform = Transform3D(0.15, 0, 0, 0, 0.25, 0, 0, 0, 0.05, 0, 0, 0)
+script = ExtResource("1_tcqi7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=791211606]
+shape = SubResource("SphereShape3D_wllx4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1543755092]
+mesh = SubResource("SphereMesh_kc8g7")
