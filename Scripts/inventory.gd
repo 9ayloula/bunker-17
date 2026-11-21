@@ -13,3 +13,7 @@ func add_item(item: String) -> void:
 
 func has_item(item: String) -> bool:
 	return item in items
+
+func remove_item(item: String) -> void:
+	items.erase(item)
+	print("Inventory: ", items)

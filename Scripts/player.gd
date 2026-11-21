@@ -20,6 +20,7 @@ var crouching = false
 @onready var ceiling_check= $CeilingCheck
 @onready var Interact_check=$Head/Interact_ray
 @onready var prompt=$CanvasLayer/Label
+@onready var flashlight=$Head/Flashlight
 
 
 func _ready() -> void:
@@ -70,9 +71,15 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
 		velocity.z = move_toward(velocity.z, 0, DECELERATION * delta)
 	move_and_slide()
+	
+	
 	handle_interaction()
 	
-	
+	if Input.is_action_just_pressed("flashlight"):
+		flashlight.toggle()
+	if Inventory.has_item("battery") and Input.is_action_just_pressed("reload") and flashlight.battery!=100:
+		flashlight.recharge()
+		Inventory.remove_item("battery")
 func handle_interaction() -> void:
 	prompt.visible=false
 	if Interact_check.is_colliding():

@@ -62,6 +62,10 @@ required_item = "keycard"
 
 [node name="StaticBody3D" parent="." unique_id=1784674151 groups=["interactable"] instance=ExtResource("7_88la7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9988256, 0, 2.180595)
+item_name = "battery"
+
+[node name="StaticBody3D" parent="StaticBody3D" unique_id=1596161463 groups=["interactable"] instance=ExtResource("7_88la7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7400074, 0, 2.180595)
 
 [connection signal="light_toggled" from="LightSwitch" to="OmniLight3D" method="_on_light_switch_light_toggled"]
 [connection signal="light_toggled" from="LightSwitch" to="OmniLight3D2" method="_on_light_switch_light_toggled"]
