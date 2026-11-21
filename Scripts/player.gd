@@ -14,6 +14,10 @@ const CROUCH_TRANSITION_SPEED=5
 
 var current_speed = WALK_SPEED
 var crouching = false
+var noise_level=0.0
+const NOISE_CROUCH=1.0
+const NOISE_SPRINT=8.0
+const NOISE_WALK=4.0
 
 @onready var head = $Head
 @onready var collision = $Player_Collision
@@ -44,10 +48,13 @@ func _physics_process(delta: float) -> void:
 	crouching = Input.is_action_pressed("crouch") or (crouching and ceiling_check.is_colliding())
 	if crouching:
 		current_speed = CROUCH_SPEED
+		noise_level=NOISE_CROUCH
 	elif Input.is_action_pressed("sprint"):
 		current_speed = SPRINT_SPEED
+		noise_level=NOISE_SPRINT
 	else:
 		current_speed = WALK_SPEED
+		noise_level=NOISE_WALK
 
 	# 2. Decide posture (written once)
 	var height = CROUCH_HEIGHT if crouching else STAND_HEIGHT
@@ -70,6 +77,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, DECELERATION * delta)
 		velocity.z = move_toward(velocity.z, 0, DECELERATION * delta)
+		noise_level=0
 	move_and_slide()
 	
 	
